@@ -138,4 +138,10 @@ describe('Connect4()', function () {
     let res = game.play(0);
     expect(res).to.equal('Player 1 wins!');
   });
+
+  it('can reset the board', function () {
+    const res = game.reset();
+    expect(res).to.equal('Board reset, Player 1\'s turn');
+    expect(game.board.board).to.eql([[], [], [], [], [], [], []]);
+  });
 });

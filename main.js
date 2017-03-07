@@ -61,6 +61,12 @@ Connect4.prototype.play = function (col) {
   }
 };
 
+Connect4.prototype.reset = function () {
+  this.board = new Connect4Board();
+  this.player = 'Player 1';
+  return 'Board reset, Player 1\'s turn';
+};
+
 if (typeof module !== 'undefined') {
   module.exports = {Connect4, Connect4Board};
 }

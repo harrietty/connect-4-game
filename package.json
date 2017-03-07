@@ -1,0 +1,20 @@
+{
+  "name": "connect4",
+  "version": "1.0.0",
+  "main": "main.js",
+  "scripts": {
+    "test": "mocha ./spec",
+    "lint": "eslint ./",
+    "precommit": "npm test",
+    "posttest": "npm run lint"
+  },
+  "dependencies": {},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "husky": "^0.13.2",
+    "mocha": "^3.2.0"
+  }
+}

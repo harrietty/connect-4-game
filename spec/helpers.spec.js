@@ -48,6 +48,20 @@ describe('rotateMatrix', function () {
         ];
         expect(rotateMatrix(matrix)).to.eql(expected);
     });
+    it('can rotate a more complex matrix in a clockwise direction', function () {
+        const matrix = [
+            [1, 2, 3, 4],
+            [1, 5, 3, 3],
+            [1, 6, 3, 1]
+        ];
+        const expected = [
+            [1, 1, 1],
+            [6, 5, 2],
+            [3, 3, 3],
+            [1, 3, 4]
+        ];
+        expect(rotateMatrix(matrix)).to.eql(expected);
+    });
     it('can rotate a non-square matrix in a clockwise direction', function () {
         const matrix = [
             [1, 2, 3],

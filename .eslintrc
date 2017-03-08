@@ -31,7 +31,7 @@
         "space-before-function-paren": 1,
         "semi": 1,
         "quotes": ["error", "single"],
-        "object-curly-spacing": 1,
+        "object-curly-spacing": 0,
         "no-multiple-empty-lines": 1
     }
 }

@@ -1,7 +1,7 @@
 const path = require('path');
 const expect = require('chai').expect;
 
-const {Connect4, Connect4Board} = require(path.join(__dirname, '..', './main.js'));
+const { Connect4, Connect4Board } = require(path.join(__dirname, '..', './main.js'));
 
 describe('Connect4Board', function () {
   let board;

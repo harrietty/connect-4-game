@@ -53,7 +53,6 @@ describe('Connect4Board', function () {
     expect(res).to.equal('Player 1');
   });
   it('can check for a horizontal winner', function () {
-    expect(board.checkHorizontalWinner()).to.equal(false);
     board.board = [
       [1, 1, 2],
       [1, 1, 2],
@@ -75,7 +74,7 @@ describe('Connect4Board', function () {
     ];
     expect(board.checkHorizontalWinner()).to.equal(1);
   });
-  it('can check for a diagonal winner', function () {
+  it('can check for a diagonal winner from a single corner', function () {
     let sampleBoard = [
       [1, 2, 1, 2, 1, 2],
       [1, 1, 1, 2, 1, 2],
@@ -138,6 +137,58 @@ describe('Connect4Board', function () {
       [1, 2, 1, 2, 1, 2]
     ];
     expect(board.checkDiagonalWinner(sampleBoard)).to.equal(false);
+  });
+  it('can check for diagonal wins in all directions', function () {
+    board.board = [
+      [1, 2, 1, 2, 1, 2],
+      [1, 1, 1, 2, 1, 2],
+      [1, 2, 1, 2, 1, 2],
+      [1, 2, 2, 1, 1, 2],
+      [1, 2, 1, 2, 1, 2],
+      [1, 2, 1, 2, 1, 2],
+      [1, 2, 1, 2, 1, 2]
+    ];
+    expect(board.checkAllDiagonals()).to.equal(true);
+    board.board = [
+      [1, 2, 1, 2, 1, 2],
+      [1, 2, 2, 2, 1, 2],
+      [1, 2, 2, 2, 1, 2],
+      [1, 2, 2, 1, 1, 2],
+      [1, 2, 1, 2, 1, 2],
+      [1, 1, 1, 2, 1, 2],
+      [1, 2, 1, 2, 1, 2]
+    ];
+    expect(board.checkAllDiagonals()).to.equal(true);
+    board.board = [
+      [1, 2, 1, 2, 1, 2],
+      [1, 2, 2, 7, 1, 2],
+      [1, 4, 2, 2, 1, 2],
+      [1, 2, 2, 1, 1, 2],
+      [1, 2, 3, 2, 1, 2],
+      [1, 1, 1, 2, 2, 2],
+      [1, 2, 1, 2, 1, 2]
+    ];
+    expect(board.checkAllDiagonals()).to.equal(true);
+    board.board = [
+      [1, 2, 1, 2, 7, 2],
+      [1, 2, 2, 7, 1, 2],
+      [1, 4, 7, 2, 1, 2],
+      [1, 7, 2, 1, 1, 2],
+      [1, 2, 3, 5, 1, 2],
+      [1, 1, 1, 2, 2, 2],
+      [1, 2, 1, 2, 1, 2]
+    ];
+    expect(board.checkAllDiagonals()).to.equal(true);
+    board.board = [
+      [1, 2, 1, 2, 1, 2],
+      [1, 2, 2, 7, 1, 2],
+      [1, 4, 2, 2, 1, 2],
+      [1, 2, 5, 1, 1, 2],
+      [1, 2, 3, 2, 1, 2],
+      [1, 1, 1, 2, 2, 2],
+      [1, 2, 1, 2, 1, 2]
+    ];
+    expect(board.checkAllDiagonals()).to.equal(false);
   });
 });
 

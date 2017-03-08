@@ -1,6 +1,6 @@
-const { checkFourMatching, rotateMatrix } = require('./helpers');
+const {checkFourMatching, rotateMatrix} = require('./helpers');
 
-function Connect4Board() {
+function Connect4Board () {
   this.board = [
     [],
     [],
@@ -22,15 +22,22 @@ Connect4Board.prototype.checkHorizontalWinner = function () {
 };
 
 Connect4Board.prototype.checkWinner = function (board) {
-  return board.map(checkFourMatching.bind(null, 6)).reduce((acc, winner) => {
+  return board.map(checkFourMatching.bind(null, board[0].length)).reduce((acc, winner) => {
     if (!acc && !winner) return false;
     if (winner) return winner;
     return acc;
   }, false);
 };
 
-Connect4Board.prototype.checkDiagonalWinner = function (board) {
+Connect4Board.prototype.checkAllDiagonals = function () {
+  const rotate90 = rotateMatrix(this.board);
+  const rotate180 = rotateMatrix(rotate90);
+  const rotate270 = rotateMatrix(rotate180);
 
+  return this.checkDiagonalWinner(this.board) || this.checkDiagonalWinner(rotate90) || this.checkDiagonalWinner(rotate180) || this.checkDiagonalWinner(rotate270);
+};
+
+Connect4Board.prototype.checkDiagonalWinner = function (board) {
   const rowsToCheck = board.slice(0, board.length - 3);
 
   return rowsToCheck.map(function (row, rowI) {
@@ -91,5 +98,5 @@ Connect4.prototype.reset = function () {
 };
 
 if (typeof module !== 'undefined') {
-  module.exports = { Connect4, Connect4Board };
+  module.exports = {Connect4, Connect4Board};
 }

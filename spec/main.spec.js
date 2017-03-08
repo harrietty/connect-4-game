@@ -84,7 +84,7 @@ describe('Connect4Board', function () {
       [1, 2, 1, 2, 1, 2],
       [1, 2, 1, 2, 1, 2]
     ];
-    expect(board.checkDiagonalWinner(sampleBoard)).to.equal(true);
+    expect(board.checkDiagonalWinner(sampleBoard)).to.equal(1);
     sampleBoard = [
       [1, 2, 1, 2, 1, 2],
       [1, 1, 2, 2, 1, 2],
@@ -94,7 +94,7 @@ describe('Connect4Board', function () {
       [1, 2, 1, 2, 1, 2],
       [1, 2, 1, 2, 1, 2]
     ];
-    expect(board.checkDiagonalWinner(sampleBoard)).to.equal(true);
+    expect(board.checkDiagonalWinner(sampleBoard)).to.equal(2);
     sampleBoard = [
       [1, 2, 1, 2, 1, 2],
       [2, 2, 1, 2, 1, 2],
@@ -104,7 +104,7 @@ describe('Connect4Board', function () {
       [1, 2, 1, 2, 1, 2],
       [1, 2, 1, 2, 1, 2]
     ];
-    expect(board.checkDiagonalWinner(sampleBoard)).to.equal(true);
+    expect(board.checkDiagonalWinner(sampleBoard)).to.equal(2);
     sampleBoard = [
       [1, 2, 1, 2, 1, 2],
       [2, 2, 1, 2, 1, 2],
@@ -114,7 +114,7 @@ describe('Connect4Board', function () {
       [1, 2, 1, 2, 1, 2],
       [1, 2, 1, 2, 1, 2]
     ];
-    expect(board.checkDiagonalWinner(sampleBoard)).to.equal(true);
+    expect(board.checkDiagonalWinner(sampleBoard)).to.equal(1);
     sampleBoard = [
       [1, 2, 1, 2, 1, 2],
       [2, 2, 1, 2, 1, 2],
@@ -124,7 +124,7 @@ describe('Connect4Board', function () {
       [1, 2, 1, 2, 1, 2],
       [1, 2, 1, 1, 1, 2]
     ];
-    expect(board.checkDiagonalWinner(sampleBoard)).to.equal(true);
+    expect(board.checkDiagonalWinner(sampleBoard)).to.equal(1);
   });
   it('returns false for a diagnonal winner if there is none', function () {
     let sampleBoard = [
@@ -148,7 +148,7 @@ describe('Connect4Board', function () {
       [1, 2, 1, 2, 1, 2],
       [1, 2, 1, 2, 1, 2]
     ];
-    expect(board.checkAllDiagonals()).to.equal(true);
+    expect(board.checkAllDiagonals()).to.equal(1);
     board.board = [
       [1, 2, 1, 2, 1, 2],
       [1, 2, 2, 2, 1, 2],
@@ -158,17 +158,17 @@ describe('Connect4Board', function () {
       [1, 1, 1, 2, 1, 2],
       [1, 2, 1, 2, 1, 2]
     ];
-    expect(board.checkAllDiagonals()).to.equal(true);
+    expect(board.checkAllDiagonals()).to.equal(1);
     board.board = [
       [1, 2, 1, 2, 1, 2],
-      [1, 2, 2, 7, 1, 2],
+      [1, 2, 2, 2, 1, 2],
       [1, 4, 2, 2, 1, 2],
       [1, 2, 2, 1, 1, 2],
       [1, 2, 3, 2, 1, 2],
       [1, 1, 1, 2, 2, 2],
       [1, 2, 1, 2, 1, 2]
     ];
-    expect(board.checkAllDiagonals()).to.equal(true);
+    expect(board.checkAllDiagonals()).to.equal(2);
     board.board = [
       [1, 2, 1, 2, 7, 2],
       [1, 2, 2, 7, 1, 2],
@@ -178,7 +178,7 @@ describe('Connect4Board', function () {
       [1, 1, 1, 2, 2, 2],
       [1, 2, 1, 2, 1, 2]
     ];
-    expect(board.checkAllDiagonals()).to.equal(true);
+    expect(board.checkAllDiagonals()).to.equal(7);
     board.board = [
       [1, 2, 1, 2, 1, 2],
       [1, 2, 2, 7, 1, 2],
@@ -188,7 +188,16 @@ describe('Connect4Board', function () {
       [1, 1, 1, 2, 2, 2],
       [1, 2, 1, 2, 1, 2]
     ];
-    expect(board.checkAllDiagonals()).to.equal(false);
+  });
+  it('can check diagonals in a board with empty spaces', function () {
+    board.board = [['Player 1'],
+    ['Player 2', 'Player 1'],
+    ['Player 2', 'Player 2', 'Player 1'],
+    ['Player 1', 'Player 2', 'Player 2', 'Player 1'],
+    ['Player 1'],
+    [],
+    []];
+    expect(board.checkAllDiagonals()).to.equal('Player 1');
   });
 });
 
@@ -251,6 +260,21 @@ describe('Connect4()', function () {
     game.play(0);
     game.play(6);
     let res = game.play(0);
+    expect(res).to.equal('Player 1 wins!');
+  });
+
+  it('returns a diagonal winner if there is one', function () {
+    game.play(0);
+    game.play(1);
+    game.play(1);
+    game.play(2);
+    game.play(3);
+    game.play(2);
+    game.play(2);
+    game.play(3);
+    game.play(4);
+    game.play(3);
+    let res = game.play(3);
     expect(res).to.equal('Player 1 wins!');
   });
 

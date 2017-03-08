@@ -41,14 +41,14 @@ Connect4Board.prototype.checkDiagonalWinner = function (board) {
   const rowsToCheck = board.slice(0, board.length - 3);
 
   return rowsToCheck.map(function (row, rowI) {
-    // will return true if there is a win in the given row
+    // will return the winner if there is a win in the given row
     const maxWidth = row.length - 3;
     for (var i = 0; i < maxWidth; i++) {
       const counter = board[rowI][i];
-      if (board[rowI + 1][i + 1] === counter &&
-        board[rowI + 2][i + 2] === counter &&
-        board[rowI + 3][i + 3] === counter) {
-        return true;
+      if ((board[rowI + 1] && board[rowI + 1][i + 1] === counter) &&
+        (board[rowI + 2] && board[rowI + 2][i + 2] === counter) &&
+        (board[rowI + 3] && board[rowI + 3][i + 3] === counter)) {
+        return counter;
       }
     }
     return false;
@@ -79,7 +79,8 @@ Connect4.prototype.play = function (col) {
   if (this.board.checkForSpace(col)) this.board.addPlayer(col, this.player);
   else return 'This column is full';
 
-  const winner = this.board.checkHorizontalWinner() || this.board.checkVerticalWinner();
+  const winner = this.board.checkHorizontalWinner() || this.board.checkVerticalWinner() || this.board.checkAllDiagonals();
+
   if (winner) return `${winner} wins!`;
 
   if (this.player === 'Player 1') {

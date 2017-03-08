@@ -15,7 +15,7 @@ function checkFourMatching (colHeight, col) {
 }
 
 function rotateMatrix (matrix) {
-    const height = matrix[0].length;
+    const height = getLongestArrLength(matrix);
     const res = [];
     for (var i = 0; i < height; i++) { // 0, 1, 2
         const newRow = [];
@@ -27,7 +27,14 @@ function rotateMatrix (matrix) {
     return res;
 }
 
+function getLongestArrLength (matrix) {
+    return matrix.reduce(function (l, row) {
+        return row.length > l ? row.length : l;
+    }, 0);
+}
+
 module.exports = {
     checkFourMatching,
-    rotateMatrix
+    rotateMatrix,
+    getLongestArrLength
 };

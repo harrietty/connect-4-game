@@ -1,7 +1,7 @@
 const path = require('path');
 const expect = require('chai').expect;
 
-const {checkFourMatching, rotateMatrix} = require(path.join(__dirname, '..', 'helpers'));
+const { checkFourMatching, rotateMatrix, getLongestArrLength } = require(path.join(__dirname, '..', 'helpers'));
 
 describe('checkFourMatching', function () {
     it('is a function', function () {
@@ -28,6 +28,23 @@ describe('checkFourMatching', function () {
         expect(checkFourMatching(8, col)).to.equal(2);
         col = [];
         expect(checkFourMatching(8, col)).to.equal(false);
+    });
+});
+
+describe('getLongestArrLength', function () {
+    it('should exist', function () {
+        expect(getLongestArrLength).to.be.a('function');
+    });
+    it('should return the longest array in a matrix', function () {
+        const matrix = [
+            ['Player 1'],
+            ['Player 2', 'Player 1'],
+            ['Player 2', 'Player 2', 'Player 1'],
+            ['Player 1', 'Player 2', 'Player 2', 'Player 1'],
+            ['Player 1'],
+            [],
+            []];
+        expect(getLongestArrLength(matrix)).to.equal(4);
     });
 });
 
@@ -59,6 +76,38 @@ describe('rotateMatrix', function () {
             [6, 5, 2],
             [3, 3, 3],
             [1, 3, 4]
+        ];
+        expect(rotateMatrix(matrix)).to.eql(expected);
+    });
+    it('can rotate a matrix with undefined spaces', function () {
+        let matrix = [
+            [1, 2, 3, undefined],
+            [1, 5, undefined, 3],
+            [1, 6, 3],
+            []
+        ];
+        let expected = [
+            [undefined, 1, 1, 1],
+            [undefined, 6, 5, 2],
+            [undefined, 3, undefined, 3],
+            [undefined, undefined, 3, undefined]
+        ];
+        const res = rotateMatrix(matrix);
+        expect(res).to.eql(expected);
+
+        matrix = [
+            ['Player 1'],
+            ['Player 2', 'Player 1'],
+            ['Player 2', 'Player 2', 'Player 1'],
+            ['Player 1', 'Player 2', 'Player 2', 'Player 1'],
+            ['Player 1'],
+            [],
+            []];
+        expected = [
+            [undefined, undefined, 'Player 1', 'Player 1', 'Player 2', 'Player 2', 'Player 1'],
+            [undefined, undefined, undefined, 'Player 2', 'Player 2', 'Player 1', undefined],
+            [undefined, undefined, undefined, 'Player 2', 'Player 1', undefined, undefined],
+            [undefined, undefined, undefined, 'Player 1', undefined, undefined, undefined]
         ];
         expect(rotateMatrix(matrix)).to.eql(expected);
     });

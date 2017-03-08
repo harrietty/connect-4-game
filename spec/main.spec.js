@@ -75,6 +75,70 @@ describe('Connect4Board', function () {
     ];
     expect(board.checkHorizontalWinner()).to.equal(1);
   });
+  it('can check for a diagonal winner', function () {
+    let sampleBoard = [
+      [1, 2, 1, 2, 1, 2],
+      [1, 1, 1, 2, 1, 2],
+      [1, 2, 1, 2, 1, 2],
+      [1, 2, 1, 1, 1, 2],
+      [1, 2, 1, 2, 1, 2],
+      [1, 2, 1, 2, 1, 2],
+      [1, 2, 1, 2, 1, 2]
+    ];
+    expect(board.checkDiagonalWinner(sampleBoard)).to.equal(true);
+    sampleBoard = [
+      [1, 2, 1, 2, 1, 2],
+      [1, 1, 2, 2, 1, 2],
+      [1, 2, 2, 2, 1, 2],
+      [1, 2, 1, 1, 2, 2],
+      [1, 2, 1, 2, 1, 2],
+      [1, 2, 1, 2, 1, 2],
+      [1, 2, 1, 2, 1, 2]
+    ];
+    expect(board.checkDiagonalWinner(sampleBoard)).to.equal(true);
+    sampleBoard = [
+      [1, 2, 1, 2, 1, 2],
+      [2, 2, 1, 2, 1, 2],
+      [1, 2, 1, 2, 1, 2],
+      [1, 2, 2, 1, 1, 2],
+      [1, 2, 1, 2, 1, 2],
+      [1, 2, 1, 2, 1, 2],
+      [1, 2, 1, 2, 1, 2]
+    ];
+    expect(board.checkDiagonalWinner(sampleBoard)).to.equal(true);
+    sampleBoard = [
+      [1, 2, 1, 2, 1, 2],
+      [2, 2, 1, 2, 1, 2],
+      [1, 1, 1, 2, 1, 2],
+      [1, 2, 1, 1, 1, 2],
+      [1, 2, 1, 1, 1, 2],
+      [1, 2, 1, 2, 1, 2],
+      [1, 2, 1, 2, 1, 2]
+    ];
+    expect(board.checkDiagonalWinner(sampleBoard)).to.equal(true);
+    sampleBoard = [
+      [1, 2, 1, 2, 1, 2],
+      [2, 2, 1, 2, 1, 2],
+      [1, 2, 1, 2, 1, 2],
+      [1, 2, 1, 1, 1, 2],
+      [1, 1, 1, 2, 1, 2],
+      [1, 2, 1, 2, 1, 2],
+      [1, 2, 1, 1, 1, 2]
+    ];
+    expect(board.checkDiagonalWinner(sampleBoard)).to.equal(true);
+  });
+  it('returns false for a diagnonal winner if there is none', function () {
+    let sampleBoard = [
+      [1, 2, 1, 2, 1, 2],
+      [1, 2, 1, 2, 1, 2],
+      [1, 2, 1, 2, 1, 2],
+      [1, 2, 2, 1, 1, 2],
+      [1, 2, 1, 2, 1, 2],
+      [1, 2, 1, 2, 1, 2],
+      [1, 2, 1, 2, 1, 2]
+    ];
+    expect(board.checkDiagonalWinner(sampleBoard)).to.equal(false);
+  });
 });
 
 describe('Connect4()', function () {

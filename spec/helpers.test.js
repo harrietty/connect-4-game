@@ -1,8 +1,5 @@
 /* global expect*/
-
-const path = require('path');
-
-const { checkFourMatching, rotateMatrix, getLongestArrLength } = require(path.join(__dirname, '..', 'helpers'));
+import { checkFourMatching, rotateMatrix, getLongestArrLength } from '../src/logic/helpers';
 
 describe('checkFourMatching', function () {
  test('returns the player with four matching adjascent counters', function () {

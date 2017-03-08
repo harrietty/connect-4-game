@@ -1,4 +1,4 @@
-const {checkFourMatching, rotateMatrix} = require('./helpers');
+import {checkFourMatching, rotateMatrix} from './helpers';
 
 function Connect4Board () {
   this.board = [
@@ -98,6 +98,7 @@ Connect4.prototype.reset = function () {
   return 'Board reset, Player 1\'s turn';
 };
 
-if (typeof module !== 'undefined') {
-  module.exports = {Connect4, Connect4Board};
-}
+export {
+  Connect4,
+  Connect4Board
+};

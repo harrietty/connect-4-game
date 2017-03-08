@@ -33,7 +33,7 @@ function getLongestArrLength (matrix) {
     }, 0);
 }
 
-module.exports = {
+export {
     checkFourMatching,
     rotateMatrix,
     getLongestArrLength

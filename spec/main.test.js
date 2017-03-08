@@ -1,7 +1,5 @@
 /* global expect */
-const path = require('path');
-
-const { Connect4, Connect4Board } = require(path.join(__dirname, '..', './main.js'));
+import { Connect4, Connect4Board } from '../src/logic/main';
 
 describe('Connect4Board', function () {
   let board;

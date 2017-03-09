@@ -1,5 +1,5 @@
 /* global expect */
-import { Connect4, Connect4Board } from '../src/logic/main';
+import { Connect4, Connect4Board } from '../connect4Class/main';
 
 describe('Connect4Board', function () {
   let board;

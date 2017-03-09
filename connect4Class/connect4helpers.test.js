@@ -1,5 +1,5 @@
 /* global expect*/
-import { checkFourMatching, rotateMatrix, getLongestArrLength } from '../src/logic/helpers';
+import { checkFourMatching, rotateMatrix, getLongestArrLength } from '../connect4Class/helpers';
 
 describe('checkFourMatching', function () {
  test('returns the player with four matching adjascent counters', function () {

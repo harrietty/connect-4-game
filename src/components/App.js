@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+
 import TurnDisplay from './TurnDisplay';
+import Board from './Board';
 
 export default class App extends Component {
     constructor (props) {
@@ -15,6 +17,7 @@ export default class App extends Component {
                     Connect 4
                 </header>
                 <TurnDisplay player={this.state.player} />
+                <Board />
             </div>
         );
     }

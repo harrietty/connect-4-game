@@ -1,2 +1,13 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Helvetica', sans-serif;
+}
+
 @import '_colors';
 @import '_header';
+@import '_turndisplay';

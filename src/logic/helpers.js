@@ -1,13 +1,3 @@
-export function fillWithNull (matrix, l) {
-    return matrix.map(function (row) {
-        const res = [];
-        for (let i = 0; i < l; i++) {
-            row[i] === undefined ? res.push(null) : res.push(row[i]);
-        }
-        return res;
-    });
-}
-
 export function rotateMatrix (matrix) {
     const height = getLongestArrLength(matrix);
     const res = [];

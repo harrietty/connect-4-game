@@ -7,7 +7,7 @@ export default class Column extends Component {
         this.state = {
             highlighted: false
         };
-        this.toggleHighlight = this.highlightCol.bind(this);
+        this.toggleHighlight = this.toggleHighlight.bind(this);
     }
 
     toggleHighlight () {
@@ -19,9 +19,9 @@ export default class Column extends Component {
     render () {
         const classes = `column ${this.state.highlighted && 'highlighted'}`;
         return (
-            <div className={classes} onMouseEnter={this.toggleHighlight} onMouseLeave={this.toggleHighlight}>
-                {this.props.column.map((cell, i) => {
-                    return (<Counter key={i} position={cell.position} />);
+            <div className={classes} onMouseEnter={this.toggleHighlight} onMouseLeave={this.toggleHighlight} onClick={this.props.takeTurn.bind(null, this.props.column)}>
+                {this.props.cells.map((cell, i) => {
+                    return (<Counter key={i} player={cell.player} />);
                 })}
             </div>
         );
@@ -29,6 +29,7 @@ export default class Column extends Component {
 }
 
 Column.propTypes = {
-    column: React.PropTypes.array,
-    takeTurn: React.PropTypes.func
+    cells: React.PropTypes.array,
+    takeTurn: React.PropTypes.func,
+    column: React.PropTypes.number
 };

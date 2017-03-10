@@ -79,3 +79,23 @@ export function checkDiagonalWinner (board) {
 export function checkForWinner (board) {
   return checkHorizontalWinner(board) || checkVerticalWinner(board) || checkAllDiagonals(board);
 }
+
+export function checkForSpace (board, col, maxColHeight) {
+  if (col === undefined || board[col][maxColHeight - 1] === undefined) return false;
+  return board[col][maxColHeight - 1].player === null;
+}
+
+export function takeTurn (board, col, player) {
+  const nextBoard = board.slice();
+  const nextSpace = findNextSpace(nextBoard, col);
+
+  if (nextSpace !== -1) nextBoard[col][nextSpace].player = player;
+
+  function findNextSpace (board, col) {
+    for (let i = 0; i < board[col].length; i++) {
+      if (board[col][i].player === null) return i;
+    }
+    return -1;
+  }
+  return nextBoard;
+}

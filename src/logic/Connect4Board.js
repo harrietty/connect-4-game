@@ -13,15 +13,14 @@ export function genNewBoard (cols, rows) {
   return board;
 }
 
-export function checkFourMatching (colHeight, col) {
+export function checkFourMatching (col) {
     let player;
-    for (let i = 0; i < colHeight - 3; i++) {
-        player = col[i];
+    for (let i = 0; i < col.length - 3; i++) {
+        player = col[i].player;
         if (player) {
-            if (col[i] === player &&
-                col[i + 1] === player &&
-                col[i + 2] === player &&
-                col[i + 3] === player) {
+            if (col[i + 1].player === player &&
+                col[i + 2].player === player &&
+                col[i + 3].player === player) {
                 return player;
             }
         }
@@ -39,7 +38,7 @@ export function checkHorizontalWinner (board) {
 }
 
 export function checkWinner (board) {
-  return board.map(checkFourMatching.bind(null, board[0].length)).reduce((acc, winner) => {
+  return board.map(checkFourMatching).reduce((acc, winner) => {
     if (!acc && !winner) return false;
     if (winner) return winner;
     return acc;
@@ -60,12 +59,12 @@ export function checkDiagonalWinner (board) {
   return rowsToCheck.map(function (row, rowI) {
     // will return the winner if there is a win in the given row
     const maxWidth = row.length - 3;
-    for (var i = 0; i < maxWidth; i++) {
-      const counter = board[rowI][i];
-      if ((board[rowI + 1] && board[rowI + 1][i + 1] === counter) &&
-        (board[rowI + 2] && board[rowI + 2][i + 2] === counter) &&
-        (board[rowI + 3] && board[rowI + 3][i + 3] === counter)) {
-        return counter;
+    for (let i = 0; i < maxWidth; i++) {
+      const player = board[rowI][i].player;
+      if ((board[rowI + 1] && board[rowI + 1][i + 1].player === player) &&
+        (board[rowI + 2] && board[rowI + 2][i + 2].player === player) &&
+        (board[rowI + 3] && board[rowI + 3][i + 3].player === player)) {
+        return player;
       }
     }
     return false;
@@ -77,7 +76,7 @@ export function checkDiagonalWinner (board) {
 }
 
 export function checkForWinner (board) {
-  return checkHorizontalWinner(board) || checkVerticalWinner(board) || checkAllDiagonals(board);
+  return checkVerticalWinner(board) || checkHorizontalWinner(board) || checkAllDiagonals(board);
 }
 
 export function checkForSpace (board, col, maxColHeight) {

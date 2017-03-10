@@ -8,6 +8,8 @@ body {
     font-family: 'Helvetica', sans-serif;
 }
 
+@import 'fa/font-awesome';
+@import '_fonts';
 @import '_colors';
 @import '_header';
 @import '_turndisplay';

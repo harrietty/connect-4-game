@@ -13,6 +13,5 @@ export default class Counter extends Component {
 }
 
 Counter.propTypes = {
-    player: React.PropTypes.string,
-    position: React.PropTypes.array
+    player: React.PropTypes.string
 };

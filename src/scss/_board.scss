@@ -12,7 +12,7 @@
     width: 128.5px;
     height: 500px;
     flex-direction: column-reverse;
-    background-color: blue;
+    background-color: $turquoise;
 }
 
 .counter {
@@ -24,5 +24,28 @@
 }
 
 .highlighted {
-    background-color: pink;
+    position: relative;
+}
+
+.highlighted:hover {
+    cursor: pointer;
+    opacity: 0.9;
+}
+
+.highlighted::before {
+    content: '\f063';
+    font-family: 'FontAwesome';
+    color: white;
+    position: absolute;
+    top: -20px;
+    text-align: center;
+    width: 128.5px;
+}
+
+.redCounter {
+    background-color: $red;
+}
+
+.blueCounter {
+    background-color: $blue;
 }

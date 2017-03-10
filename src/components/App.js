@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-import TurnDisplay from './TurnDisplay';
 import Board from './Board';
 
 export default class App extends Component {
@@ -16,7 +15,6 @@ export default class App extends Component {
                 <header>
                     Connect 4
                 </header>
-                <TurnDisplay player={this.state.player} />
                 <Board />
             </div>
         );

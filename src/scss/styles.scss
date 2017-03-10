@@ -1,3 +1,7 @@
+@import 'fa/font-awesome';
+@import '_fonts';
+@import '_colors';
+
 * {
     box-sizing: border-box;
 }
@@ -6,11 +10,10 @@ body {
     margin: 0px;
     padding: 0px;
     font-family: 'Helvetica', sans-serif;
+    background-color: $darkGray;
 }
 
-@import 'fa/font-awesome';
-@import '_fonts';
-@import '_colors';
+
 @import '_header';
 @import '_turndisplay';
 @import '_board';

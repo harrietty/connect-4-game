@@ -3,6 +3,7 @@ import { genNewBoard, checkForSpace, takeTurn, checkForWinner } from '../logic/C
 import Column from './Column';
 import Winner from './Winner';
 import PlayAgain from './PlayAgain';
+import TurnDisplay from './TurnDisplay';
 
 const ROWS = 6;
 const COLS = 7;
@@ -49,10 +50,13 @@ export default class Board extends Component {
             );
         } else {
             return (
-                <div className='board'>
-                    {this.state.board.map((col, i) => {
-                        return (<Column player={this.state.player} column={i} cells={col} key={i} takeTurn={this.takeTurn} />);
-                    })}
+                <div>
+                    <TurnDisplay player={this.state.player} />
+                    <div className='board'>
+                        {this.state.board.map((col, i) => {
+                            return (<Column player={this.state.player} column={i} cells={col} key={i} takeTurn={this.takeTurn} />);
+                        })}
+                    </div>
                 </div>
             );
         }

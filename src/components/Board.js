@@ -12,15 +12,15 @@ export default class Board extends Component {
         this.takeTurn = this.takeTurn.bind(this);
     }
 
-    takeTurn () {
-        
+    takeTurn (col) {
+        console.log(col);
     }
 
     render () {
         return (
             <div className='board'>
                 {this.state.board.map((col, i) => {
-                    return (<Column player={this.state.player} column={col} key={i} />);
+                    return (<Column player={this.state.player} column={col} key={i} takeTurn={this.takeTurn} />);
                 })}
             </div>
         );
